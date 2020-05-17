@@ -18,21 +18,9 @@ pipeline{
                  
                  stage ('Check logs') {
                     steps {
-                        filterLogs ('WARNING', 50)
+                        filterLogs ('WARNING', 1)
                     }
                 }
-              stage('Artifacts to S3') {
-                  try {
-                      withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'DeploytoS3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
-                              {
-                          sh "aws s3 ls"
-                          sh "aws s3 cp webapp/target/webapp.war s3:samplehellow/Shared-Lib"
-                      } catch {
-                          echo "Failed" 
-                      }
-                  }
-
-              }
 		
            }	       	     	         
 }
