@@ -23,8 +23,8 @@ pipeline{
                 stage('Artifacts to S3'){
                   steps{
                       script {
-		    	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'S3Deploy', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
-			          	     }
+		    	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'DeploytoS3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
+			    			          	     }
 			
                  }
               
