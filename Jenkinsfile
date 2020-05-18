@@ -23,9 +23,7 @@ pipeline{
                 stage('Artifacts to S3'){
                   steps{
                       script{
-		    	        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'DeploytoS3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
-                        sh "aws s3 ls"
-                        sh "aws s3 cp webapp/target/webapp.war s3:samplehellow/Shared-Lib"
+		    	   s3CopyArtifact buildSelector: lastSuccessful(), excludeFilter: '', filter: 'webapp/target/webapp.war', flatten: false, optional: false, projectName: 'Shared-Lib', target: 's3:samplehellow/Shared-Lib'
                         echo "S3 bucket"
                       	}
                	     }  
