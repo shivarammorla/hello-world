@@ -29,7 +29,7 @@ pipeline{
             stage('Artifacts to S3'){
                 steps{
                     script {
-			    sh ''BuildName="version-$BUILD_NUMBER"
+		    }sh ''BuildName="version-$BUILD_NUMBER"
 				BucketName="samplehellow/Shared-Lib"
 				zip -r $BuildName.zip *
 				aws s3 cp $BuildName.zip s3:$BucketName --region ap-south-1''
