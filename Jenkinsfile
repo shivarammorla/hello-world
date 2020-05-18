@@ -29,7 +29,8 @@ pipeline{
 	   stage('Build Number'){
                 steps{
                     script {
-		        sh label: '', script: '''BuildName="version-$BUILD_NUMBER" '''
+		        sh label: '', script: '''BuildName="version-$BUILD_NUMBER"
+			mv **/webapp/target/*.war **/webapp/target/*$BuildName.war'''
 		        	}
 			}
 		    }
