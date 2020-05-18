@@ -6,7 +6,13 @@ pipeline{
       agent any
 
         stages{
-
+		stage('maven build'){
+                  steps{
+                      script{
+		    	               checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Harshaguptha/hello-world.git']]])
+                      	  }
+               	     }  
+                 }	
               stage('maven build'){
                   steps{
                       script{
