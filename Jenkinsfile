@@ -33,7 +33,7 @@ pipeline{
                     script {
 		        //s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'samplehellow', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**/webapp/target/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'S3Deploy', userMetadata: []
 			//aws elasticbeanstalk update-environment --environment-name "HelloWorld-env" --version-label "hello-world-source" --region ap-south-1
-		    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+		    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'S3Deploy', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
          sh "aws s3 ls"
 			    sh "aws s3 cp **/webapp/target/*.war s3://samplehello/"
 			    BuildName="version-$BUILD_NUMBER"
