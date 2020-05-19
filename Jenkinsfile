@@ -38,7 +38,8 @@ pipeline{
 			    BuildName="version-$BUILD_NUMBER"
 			  //sh "sudo mkdir /opt/$BuildName"
 			  sh "sudo mv /var/lib/jenkins/workspace/Shared-Lib@2/webapp/target/*.war /opt/webapp"
-			    sh "aws s3 cp /opt/webapp/webapp.war s3://samplehello"
+			    s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'samplehellow', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '/opt/webapp/webapp.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'S3Deploy', userMetadata: []
+			    //sh "aws s3 cp /opt/webapp/webapp.war s3://samplehello"
 			    
 		    }
 		    }
