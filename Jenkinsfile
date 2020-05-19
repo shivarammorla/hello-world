@@ -36,8 +36,8 @@ pipeline{
 		    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'DeploytoS3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
          sh "aws s3 ls"
 			    BuildName="version-$BUILD_NUMBER"
-			    sh "sudo mkdir /opt/$BuildName"
-			  //sh "cp /var/lib/jenkins/workspace/Shared-Lib@2/webapp/target/*.war /opt/webapp"
+			  //  sh "sudo mkdir /opt/$BuildName"
+			  sh "cp /var/lib/jenkins/workspace/Shared-Lib@2/webapp/target/*.war /opt/webapp"
 			    //sh "aws s3 cp **/webapp/target/*.war s3://samplehello/"
 			    
 		    }
