@@ -37,7 +37,7 @@ pipeline{
          sh "aws s3 ls"
 			    BuildName="version-$BUILD_NUMBER"
 			  //  sh "sudo mkdir /opt/$BuildName"
-			  sh "mv /var/lib/jenkins/workspace/Shared-Lib@2/webapp/target/*.war /opt/webapp"
+			  sh "sudo mv /var/lib/jenkins/workspace/Shared-Lib@2/webapp/target/*.war /opt/webapp"
 			    sh "aws s3 cp /opt/webapp/webapp.war s3://samplehello"
 			    
 		    }
