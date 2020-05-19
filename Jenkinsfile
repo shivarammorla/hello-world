@@ -31,8 +31,7 @@ pipeline{
                 steps{
                     script {
 		        s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'samplehellow', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**/webapp/target/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'S3Deploy', userMetadata: []
-			sh 'aws elasticbeanstalk create-application-version --application-name "$ApplicationName" --version-label "$BuildName" --description "Build created from JENKINS. Job:$JOB_NAME, BuildId:$BUILD_DISPLAY_NAME, GitCommit:$GIT_COMMIT, GitBranch:$GIT_BRANCH" --source-bundle S3Bucket=samplehellow,S3Key=webapp.war --region ap-south-1'
-		    }
+					    }
 			
 			    }
             }
