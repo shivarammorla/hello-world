@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
 @Library('shared-library@master') _ //master or whatever branch
+@Library('github.com/releaseworks/jenkinslib') _
 
 pipeline{
       agent any
