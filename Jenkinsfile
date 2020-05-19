@@ -35,7 +35,7 @@ pipeline{
                  steps {
                      script{
                          //s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'samplehellow', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**target/webapp/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'S3Deploy', userMetadata: []
-                         s3Upload(file:'/var/lib/jenkins/workspace/Shared-Lib@2/webapp/target/*.war', bucket:'samplehellow', path:'samplehellow')
+                         s3Upload(file:'/var/lib/jenkins/workspace/Shared-Lib@2/webapp/target/*.war', bucket:'samplehellow')
                     }
                  }
              }
