@@ -30,7 +30,8 @@ pipeline{
                 steps{
                     script {
 		        sh label: '', script: '''BuildName="version-$BUILD_NUMBER"
-			mv **/webapp/target/*.war **/webapp/target/*$BuildName.war'''
+			mkdir **/webapp/target/Build
+			mv **/webapp/target/*.war **/webapp/target/Build/*$BuildName.war'''
 		        	}
 			}
 		    }
