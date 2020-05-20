@@ -41,7 +41,7 @@ pipeline{
                       sh label: '', script: '''BuildName="version-$BUILD_NUMBER"
                         BucketName="samplehellow"
 
-                        sudo rm /opt/webapp
+                        sudo rmdir /opt/webapp
 
                         sudo mkdir /opt/$BuildName
                         zip -r $BuildName.zip *
