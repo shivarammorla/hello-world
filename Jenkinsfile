@@ -44,9 +44,9 @@ node('node'){
     stage('deployment of application using docker'){
        try {
         sh "docker version"
-        //sh "docker stop helloworld"
-        //sh "docker rm helloworld"
-        //sh "docker rmi harshajaya/helloworld:newtag"
+        sh "docker stop helloworld"
+        sh "docker rm helloworld"
+        sh "docker rmi harshajaya/helloworld:newtag"
         sh "docker build -t harshajaya/helloworld:newtag -f Dockerfile ."
         sh "docker run --name helloworld -p 8282:8080 -d harshajaya/helloworld:newtag"
         withDockerRegistry(credentialsId: 'docker-hub-registry') {
@@ -76,7 +76,7 @@ node('node'){
        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
             sh "aws s3 ls"
           sh "aws s3 mb s3://helloworld-bucket-for-aws"
-         sh "aws s3 cp webapp/target/*.war s3://webapp-bucket-for-aws"
+         sh "aws s3 cp webapp/target/*.war s3://helloworld-bucket-for-aws"
          }
       } catch(err) {
         sh "echo error in sending artifacts to s3"
