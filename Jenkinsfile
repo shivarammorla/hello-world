@@ -45,7 +45,7 @@ node('node'){
        try {
         sh "docker version"
         sh "docker build -t harshajaya/helloworld:newtag -f Dockerfile ."
-        sh "docker run -p 8080:8080 -d harshajaya/helloworld:newtag"
+        sh "docker run -p 8282:8080 -d harshajaya/helloworld:newtag"
         withDockerRegistry(credentialsId: 'docker-hub-registry') {
         sh "docker push harshajaya/helloworld:newtag"
         }
