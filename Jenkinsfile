@@ -44,9 +44,9 @@ node('node'){
     stage('deployment of application using docker'){
        try {
         sh "docker version"
-        sh "docker stop helloworld"
-        sh "docker rm helloworld"
-        sh "docker rmi harshajaya/helloworld:newtag"
+        //sh "docker stop helloworld"
+        //sh "docker rm helloworld"
+        //sh "docker rmi harshajaya/helloworld:newtag"
         sh "docker build -t harshajaya/helloworld:newtag -f Dockerfile ."
         sh "docker run --name helloworld -p 8282:8080 -d harshajaya/helloworld:newtag"
         withDockerRegistry(credentialsId: 'docker-hub-registry') {
