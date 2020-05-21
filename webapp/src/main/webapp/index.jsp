@@ -1,3 +1,3 @@
-<h1> Hello, Welcome to Simple DevOps Project !!   </h1>
- <h2> Deployed on EB Tomcat Container </h2>
+<h1> Hello, Welcome all   </h1>
+ <h2> Deployed on Docker and pushed to S3</h2>
 
