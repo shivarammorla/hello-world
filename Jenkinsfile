@@ -36,6 +36,7 @@ node('node'){
          sh "$mvnHome/bin/mvn clean package -DskipTests=true"
          archiveArtifacts allowEmptyArchive: true, artifacts: 'webapp/target/*.war'
       } catch(err) {
+         sh "echo Hi Hellow"
          sh "echo error in packaging and generating artifacts"
       }
    }
