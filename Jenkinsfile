@@ -3,9 +3,9 @@
 pipeline {
     agent { node {label 'node'}
      }
-    //environment{
-      //  mvnHome = tool 'maven-3.6.3'
-    //}
+    environment{
+      mvnHome = tool 'maven-3.6.3'
+    }
     stages{
         stage('checkout'){
             steps{
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Maven Test'){
             steps{
-                mvnHome = tool 'maven-3.6.3'
+                //mvnHome = tool 'maven-3.6.3'
                 sh "$mvnHome/bin/mvn --version"
                 sh "$mvnHome/bin/mvn clean test surefire-report:report"
                 }
