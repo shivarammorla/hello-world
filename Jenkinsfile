@@ -34,7 +34,7 @@ pipeline {
                 sh "docker rmi harshajaya/helloworld:newtag"
                 sh "docker build -t harshajaya/helloworld:newtag -f Dockerfile ."
                 sh "docker run --name helloworld -p 8282:8080 -d harshajaya/helloworld:newtag"
-                withDockerRegistry(credentialsId: 'docker-hub-registry',url: 'https://hub.docker.com/') {
+                withDockerRegistry(credentialsId: 'docker-hub-registry',url: 'https://hub.docker.com/u/harshajaya') {
                     sh "docker push harshajaya/helloworld:newtag"
                 }
             }
