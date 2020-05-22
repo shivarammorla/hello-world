@@ -26,22 +26,21 @@ pipeline {
                 archiveArtifacts allowEmptyArchive: true, artifacts: 'webapp/target/*.war'
             }
         }
-        stage('deployment of application using docker'){
-            steps{
-                sh "docker version"
-                sh "docker stop helloworld"
-                sh "docker rm helloworld"
-                sh "docker rmi harshajaya/helloworld:newtag"
-                sh "docker build -t harshajaya/helloworld:newtag -f Dockerfile ."
-                sh "docker run --name helloworld -p 8282:8080 -d harshajaya/helloworld:newtag"
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-registry', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-                    withDockerRegistry(credentialsId: 'docker-hub-registry',url: 'https://hub.docker.com') {
-                        sh "docker push harshajaya/helloworld:newtag"
+        //stage('deployment of application using docker'){
+          //  steps{
+            //    sh "docker version"
+              //  sh "docker stop helloworld"
+              //   sh "docker rm helloworld"
+              //  sh "docker rmi harshajaya/helloworld:newtag"
+              //  sh "docker build -t harshajaya/helloworld:newtag -f Dockerfile ."
+              //  sh "docker run --name helloworld -p 8282:8080 -d harshajaya/helloworld:newtag"
+               // withDockerRegistry(credentialsId: 'docker-hub-registry',url: 'https://hub.docker.com') {
+                //        sh "docker push harshajaya/helloworld:newtag"
                         //Added the credentials
-                    }
-                }
-            }}
-        }
+                  //  }
+                //}
+            //}
+        //}
         stage('artifacts to s3'){
             steps{
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
@@ -59,3 +58,4 @@ pipeline {
         }
 
     }
+}
