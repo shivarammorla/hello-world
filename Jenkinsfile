@@ -1,10 +1,11 @@
 @Library('shared-library@master') _
 
 pipeline {
-    agent {node}
-    environment{
-        mvnHome = tool 'maven-3.6.3'
-    }
+    agent { node {label 'node'}
+     }
+    //environment{
+      //  mvnHome = tool 'maven-3.6.3'
+    //}
     stages{
         stage('checkout'){
             steps{
