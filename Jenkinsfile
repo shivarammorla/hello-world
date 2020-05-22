@@ -1,7 +1,7 @@
 @Library('shared-library@master') _
 
 pipeline {
-    agent { label }
+    agent {node}
     environment{
         mvnHome = tool 'maven-3.6.3'
     }
