@@ -6,25 +6,25 @@ pipeline {
       //  mvnHome = tool 'maven-3.6.3'
     //}
     stages{
-        stage(checkout){
+        stage('checkout'){
             steps{
                 git credentialsId: 'git-token', url: 'https://github.com/Harshaguptha/hello-world.git'
             }
         }
-        stage(Test){
+        stage('Maven Test'){
             steps{
                 mvnHome = tool 'maven-3.6.3'
                 sh "$mvnHome/bin/mvn --version"
                 sh "$mvnHome/bin/mvn clean test surefire-report:report"
                 }
         }
-        stage(package and generate artifacts){
+        stage('package and generate artifacts'){
             steps{
                 sh "$mvnHome/bin/mvn clean package -DskipTests=true"
                 archiveArtifacts allowEmptyArchive: true, artifacts: 'webapp/target/*.war'
             }
         }
-        stage(deployment of application using docker){
+        stage('deployment of application using docker'){
             steps{
                 sh "docker version"
                 sh "docker stop helloworld"
@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage(artifacts to s3){
+        stage('artifacts to s3'){
             steps{
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                     sh "aws s3 ls"
@@ -47,7 +47,7 @@ pipeline {
                 }
             }
         }
-        stage(Check logs){
+        stage('Check logs'){
             steps{
                 filterLogs ('WARNING', 1)
             }
