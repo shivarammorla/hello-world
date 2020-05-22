@@ -6,12 +6,12 @@ pipeline {
         mvnHome=tool 'maven-3.6.3'
     }
     stages{
-        stage(){
+        stage(checkout){
             steps{
                 git credentialsId: 'git-token', url: 'https://github.com/Harshaguptha/hello-world.git'
             }
         }
-        stage(maven test){
+        stage(maven checking){
             steps{
                 mvnHome=tool 'maven-3.6.3'
                 sh "$mvnHome/bin/mvn --version"
