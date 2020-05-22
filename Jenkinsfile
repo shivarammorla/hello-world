@@ -34,10 +34,12 @@ pipeline {
                 sh "docker rmi harshajaya/helloworld:newtag"
                 sh "docker build -t harshajaya/helloworld:newtag -f Dockerfile ."
                 sh "docker run --name helloworld -p 8282:8080 -d harshajaya/helloworld:newtag"
-                withDockerRegistry(credentialsId: 'docker-hub-registry',url: 'https://hub.docker.com') {
-                    sh "docker push harshajaya/helloworld:newtag"
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-registry', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    withDockerRegistry(credentialsId: 'docker-hub-registry',url: 'https://hub.docker.com') {
+                        sh "docker push harshajaya/helloworld:newtag"
+                    }
                 }
-            }
+            }}
         }
         stage('artifacts to s3'){
             steps{
