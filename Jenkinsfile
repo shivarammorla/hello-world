@@ -54,7 +54,7 @@ pipeline {
         }
         stage('Check logs'){
             steps{
-                filterLogs ('WARNING', 1)
+                filterLogs ('WARNING', 50)
             }
         }
 
