@@ -6,7 +6,7 @@ pipeline {
      }
     environment{
       mvnHome = tool 'maven-3.6.3'
-        echo "$env.BUILD_ID"
+        echo "$BUILD_ID"
     }
     stages{
         stage('checkout'){
@@ -47,7 +47,7 @@ pipeline {
                 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                     sh "aws s3 ls"
                     sh "aws s3 mb s3://helloworld-bucket-for-aws"
-                    sh "aws s3 cp webapp/target/*.war s3://helloworld-bucket-for-aws/$env.BUILD_ID"
+                    sh "aws s3 cp webapp/target/*.war s3://helloworld-bucket-for-aws/$BUILD_ID"
 
                 }
             }
