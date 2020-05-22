@@ -1,7 +1,7 @@
 @Library('shared-library@master') _
 
 pipeline {
-    agent { node }
+    agent { label }
     environment{
         mvnHome = tool 'maven-3.6.3'
     }
@@ -32,7 +32,7 @@ pipeline {
                 sh "docker rmi harshajaya/helloworld:newtag"
                 sh "docker build -t harshajaya/helloworld:newtag -f Dockerfile ."
                 sh "docker run --name helloworld -p 8282:8080 -d harshajaya/helloworld:newtag"
-                withDockerRegistry(credentialsId: 'docker-hub-registry') {
+                withDockerRegistry(credentialsId: 'docker-hub-registry', url: 'https://hub.docker.com/repository/docker/harshajaya/') {
                     sh "docker push harshajaya/helloworld:newtag"
                 }
             }
