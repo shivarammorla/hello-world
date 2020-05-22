@@ -21,17 +21,18 @@ node('node'){
       }
     }
 
-<<<<<<< HEAD
-                }
-            }
-        }
-        stage('Check logs'){
-            steps{
-                filterLogs ('WARNING', 50)
-            }
-        }
-=======
-  stage('package and generate artifacts'){
+   //stage('test case and report'){
+     // try {
+       // echo "executing test cases"
+         //junit allowEmptyResults: true, testResults: 'addressbook_main/target/surefire-reports/*.xml'
+         //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'addressbook_main/target/site', reportFiles: 'surefire-report.html', reportName: 'SureFireReportHTML', reportTitles: ''])
+
+      //} catch(err){
+        // throw err
+         //}
+   //}
+
+   stage('package and generate artifacts'){
       try {
          sh "$mvnHome/bin/mvn clean package -DskipTests=true"
          archiveArtifacts allowEmptyArchive: true, artifacts: 'webapp/target/*.war'
@@ -40,7 +41,6 @@ node('node'){
          sh "echo error in packaging and generating artifacts"
       }
    }
->>>>>>> 8f8a0437063520cc50323186c2e5abb62fa92981
 
     stage('deployment of application using docker'){
        try {
@@ -57,8 +57,6 @@ node('node'){
          sh "echo error in deployment using docker"
        }
     }
-<<<<<<< HEAD
-=======
 
    stage('check logs'){
        try{ filterLogs ('WARNING', 1)
@@ -77,5 +75,4 @@ node('node'){
         sh "echo error in sending artifacts to s3"
       }
    }
->>>>>>> 8f8a0437063520cc50323186c2e5abb62fa92981
 }
