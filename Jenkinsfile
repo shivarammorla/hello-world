@@ -37,6 +37,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-registry', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     withDockerRegistry(credentialsId: 'docker-hub-registry',url: 'https://hub.docker.com') {
                         sh "docker push harshajaya/helloworld:newtag"
+                        //Added the credentials
                     }
                 }
             }}
