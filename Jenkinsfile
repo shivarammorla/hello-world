@@ -1,3 +1,4 @@
+@Library('shared-library@master') _
 def mvnHome
 
 node('node'){
@@ -71,6 +72,12 @@ node('node'){
       //}
    //}
    //
+   stage('check logs'){
+       try{ filterLogs ('WARNING', 1)
+         } catch(err) {
+
+         }
+       }
    stage('artifacts to s3'){
       try {
        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
