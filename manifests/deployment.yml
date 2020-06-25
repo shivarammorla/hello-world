@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: "aksdemo-047c"
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: "aksdemo-047c"
+    spec:
+      containers:
+        - name: "aksdemo-047c"
+          image: "demo1harsha.azurecr.io/aksdemo"
+          ports:
+          - containerPort: 80
