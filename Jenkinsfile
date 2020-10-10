@@ -1,6 +1,5 @@
-@Library('shared-library@master') _
+#@Library('shared-library@master') _
 def mvnHome
-
 node('node'){
    stage('git checkout'){
       try {
@@ -58,21 +57,21 @@ node('node'){
        }
     }
 
-   stage('check logs'){
-       try{ filterLogs ('WARNING', 1)
-         } catch(err) {
-
-         }
-       }
-   stage('artifacts to s3'){
-      try {
-       withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-            sh "aws s3 ls"
-          sh "aws s3 mb s3://helloworld-bucket-for-aws"
-         sh "aws s3 cp webapp/target/*.war s3://helloworld-bucket-for-aws"
-         }
-      } catch(err) {
-        sh "echo error in sending artifacts to s3"
-      }
+#   stage('check logs'){
+ #      try{ filterLogs ('WARNING', 1)
+  #       } catch(err) {
+#
+ #        }
+  #     }
+   #stage('artifacts to s3'){
+    #  try {
+     #  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'deploytos3', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+      #      sh "aws s3 ls"
+       #   sh "aws s3 mb s3://helloworld-bucket-for-aws"
+        # sh "aws s3 cp webapp/target/*.war s3://helloworld-bucket-for-aws"
+         #}
+      #} catch(err) {
+       # sh "echo error in sending artifacts to s3"
+      #}
    }
 }
