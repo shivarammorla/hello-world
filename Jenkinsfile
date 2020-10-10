@@ -18,3 +18,4 @@ pipeline {
                 sh "$mvnHome/bin/mvn clean test surefire-report:report"
                 }
         }
+    }
