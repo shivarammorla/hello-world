@@ -73,5 +73,5 @@ node('node'){
       //} catch(err) {
        // sh "echo error in sending artifacts to s3"
       //}
-   }
+   //}
 }
