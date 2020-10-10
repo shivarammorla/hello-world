@@ -18,5 +18,11 @@ pipeline {
                 sh "$mvnHome/bin/mvn clean test surefire-report:report"
                 }
         }
-    }
-}   
+        stage('package and generate artifacts'){
+            steps{
+                sh "$mvnHome/bin/mvn clean package -DskipTests=true"
+              archiveArtifacts allowEmptyArchive: true, artifacts: 'webapp/target/*.war'
+            }
+        }
+    }      
+}
