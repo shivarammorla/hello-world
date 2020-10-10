@@ -3,7 +3,7 @@ def mvnHome
 node('node'){
    stage('git checkout'){
       try {
-       git credentialsId: 'git-token', url: 'https://github.com/Harshaguptha/hello-world.git'
+       git credentialsId: 'git-token', url: 'https://github.com/shivarammorla/hello-world.git'
 
       } catch(err) {
          sh "echo error in checkout"
@@ -46,9 +46,9 @@ node('node'){
         sh "docker version"
         sh "docker stop helloworld"
         sh "docker rm helloworld"
-        sh "docker rmi harshajaya/helloworld:newtag"
-        sh "docker build -t harshajaya/helloworld:newtag -f Dockerfile ."
-        sh "docker run --name helloworld -p 8282:8080 -d harshajaya/helloworld:newtag"
+        sh "docker rmi shiva360/helloworld:newtag"
+        sh "docker build -t shiva360/helloworld:newtag -f Dockerfile ."
+        sh "docker run --name helloworld -p 8282:8080 -d shiva360/helloworld:newtag"
         withDockerRegistry(credentialsId: 'docker-hub-registry') {
         sh "docker push harshajaya/helloworld:newtag"
         }
