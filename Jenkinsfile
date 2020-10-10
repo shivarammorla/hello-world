@@ -28,9 +28,9 @@ pipeline {
         stage('deployment of application using docker'){
             steps {
                 sh "docker version"
-                //sh "docker stop helloworld"
-                //sh "docker rm helloworld"
-                //sh "docker rmi shiva360/helloworld:newtag"
+                sh "docker stop helloworld"
+                sh "docker rm helloworld"
+                sh "docker rmi shiva360/helloworld:latest"
                 sh "docker build -t shiva360/helloworld:latest -f Dockerfile ."
                 sh "docker run --name helloworld -p 8282:8080 -d shiva360/helloworld:latest"
                 withDockerRegistry(credentialsId: 'docker-hub-registry') {
