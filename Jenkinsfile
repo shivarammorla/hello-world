@@ -41,21 +41,21 @@ node('node'){
       }
    }
 
-    stage('deployment of application using docker'){
-       try {
-        sh "docker version"
-        sh "docker stop helloworld"
-        sh "docker rm helloworld"
-        sh "docker rmi shiva360/helloworld:newtag"
-        sh "docker build -t shiva360/helloworld:newtag -f Dockerfile ."
-        sh "docker run --name helloworld -p 8282:8080 -d shiva360/helloworld:newtag"
-        withDockerRegistry(credentialsId: 'docker-hub-registry') {
-        sh "docker push harshajaya/helloworld:newtag"
-        }
-       } catch(err) {
-         sh "echo error in deployment using docker"
-       }
-    }
+  //  stage('deployment of application using docker'){
+    //   try {
+      //  sh "docker version"
+        //sh "docker stop helloworld"
+        //sh "docker rm helloworld"
+        //sh "docker rmi shiva360/helloworld:newtag"
+        //sh "docker build -t shiva360/helloworld:newtag -f Dockerfile ."
+        //sh "docker run --name helloworld -p 8282:8080 -d shiva360/helloworld:newtag"
+        //withDockerRegistry(credentialsId: 'docker-hub-registry') {
+        //sh "docker push harshajaya/helloworld:newtag"
+        //}
+       //} catch(err) {
+         //sh "echo error in deployment using docker"
+       //}
+    //}
 
 //   stage('check logs'){
  //      try{ filterLogs ('WARNING', 1)
