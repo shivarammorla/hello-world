@@ -31,10 +31,10 @@ pipeline {
                 //sh "docker stop helloworld"
                 //sh "docker rm helloworld"
                 //sh "docker rmi shiva360/helloworld:newtag"
-                sh "docker build -t shiva360/helloworld:newtag -f Dockerfile ."
+                sh "docker build -it shiva360/helloworld:newtag -f Dockerfile ."
                 sh "docker run --name helloworld -p 8282:8080 -d shiva360/helloworld:newtag"
                 withDockerRegistry(credentialsId: 'docker-hub-registry') {
-                sh "docker push harshajaya/helloworld:newtag"
+                sh "docker push shiva360/helloworld:newtag"
                 }
             } 
         }
