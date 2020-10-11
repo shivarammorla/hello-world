@@ -25,18 +25,18 @@ pipeline {
             }
         }
         
-        stage('deployment of application using docker'){
-            steps {
-                sh "docker version"
-                sh "docker stop helloworld"
-                sh "docker rm helloworld"
-                sh "docker rmi shiva360/helloworld:update5"
-                sh "docker build -t shiva360/helloworld:update5 -f Dockerfile ."
-                sh "docker run --name helloworld -p 8080:8080 -d shiva360/helloworld:update5"
-                withDockerRegistry(credentialsId: 'docker-hub-registry') {
-                sh "docker push shiva360/helloworld:update5"
-                }
-            } 
-        }
+        //stage('deployment of application using docker'){
+           // steps {
+              //  sh "docker version"
+              //  sh "docker stop helloworld"
+              //  sh "docker rm helloworld"
+              //  sh "docker rmi shiva360/helloworld:update5"
+             //   sh "docker build -t shiva360/helloworld:update5 -f Dockerfile ."
+              //  sh "docker run --name helloworld -p 8080:8080 -d shiva360/helloworld:update5"
+             //   withDockerRegistry(credentialsId: 'docker-hub-registry') {
+              //  sh "docker push shiva360/helloworld:update5"
+              //  }
+           // } 
+       // }
     }      
 }   
