@@ -33,7 +33,7 @@ pipeline {
                 sh "docker rmi shiva360/helloworld:update5"
                 sh "docker build -t shiva360/helloworld:update5 -f Dockerfile ."
                 sh "docker run --name helloworld -p 8080:8080 -d shiva360/helloworld:update5"
-                withDockerRegistry(credentialsId: 'docker-hub-registry') {
+                withDockerRegistry(credentialsId:shiva360 'docker-hub-registry') {
                 sh "docker push shiva360/helloworld:update5"
                 }
             } 
