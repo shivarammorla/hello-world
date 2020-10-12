@@ -33,8 +33,14 @@ pipeline {
                 sh "docker rmi shiva360/helloworld:update5"
                sh "docker build -t shiva360/helloworld:update5 -f Dockerfile ."
                 sh "docker run --name helloworld -p 8080:8080 -d shiva360/helloworld:update5"
-               withDockerRegistry(credentialsId: 'docker-hub-registry') {
-               sh "docker push shiva360/helloworld:update5"
+              // withDockerRegistry(credentialsId: 'docker-hub-registry') {
+              //
+               // This step should not normally be used in your script. Consult the inline help for details.
+             withDockerRegistry(credentialsId: 'docker-hub-registry', url: 'https://hub.docker.com') {
+    // some block
+}
+              sh "docker push shiva360/helloworld:update5"
+               
                 }
            } 
         }
