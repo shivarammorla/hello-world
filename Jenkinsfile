@@ -39,7 +39,7 @@ pipeline {
              withDockerRegistry(credentialsId: 'docker-hub-registry', url: 'https://hub.docker.com')
     // some block
 //}
-              sh "docker push shiva360/helloworld:update5"
+              sh "docker push shiva360/helloworld:update"
                
                 }
            } 
