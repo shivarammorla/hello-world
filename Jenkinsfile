@@ -8,13 +8,13 @@ pipeline {
                 git credentialsId: 'github-creds', url: 'https://github.com/shivarammorla/hello-world.git'
             }
         }
-        stage('Maven Test'){
-            steps{
-                
-                sh "$mvnHome/bin/mvn --version"
-                sh "$mvnHome/bin/mvn clean test surefire-report:report"
-                }
-        }
+        stage('build code from maven')
+          {
+         steps
+            {
+            sh 'mvn install'
+               }
+          }
         stage('package and generate artifacts'){
             steps{
                 sh "$mvnHome/bin/mvn clean package -DskipTests=true"
