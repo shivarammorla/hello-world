@@ -1,5 +1,5 @@
 pipeline {
-    agent { node {label 'node'}
+    agent any
      }
     environment{
       mvnHome = tool 'maven-3.6.3'
@@ -11,10 +11,5 @@ pipeline {
                 git credentialsId: 'git-token', url: 'https://github.com/shivarammorla/hello-world.git'
             }
         }
-        stage('Maven Test'){
-            steps{
-                
-                sh "$mvnHome/bin/mvn --version"
-                sh "$mvnHome/bin/mvn clean test surefire-report:report"
-                }
+        
         }
