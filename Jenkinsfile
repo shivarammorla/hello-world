@@ -20,10 +20,9 @@ pipeline {
             sh 'mvn install'
                }
           }
-        stage('package and generate artifacts'){
-           steps{
-               sh "$mvnHome/bin/mvn clean package -DskipTests=true"
-              archiveArtifacts allowEmptyArchive: true, artifacts: 'webapp/target/*.war'
+        stage('Upload war to nexus') {
+            steps {
+              nexusArtifactUploader artifacts: [[artifactId: 'hello', classifier: '', file: 'target/hello-1.0.war', type: 'war']], credentialsId: 'newnexus', groupId: 'com.boxfuse.samples', nexusUrl: 'http://15.206.66.142:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'hcltraining', version: '1.0'
             }
         }
     }
