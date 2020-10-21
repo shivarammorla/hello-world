@@ -1,10 +1,10 @@
 pipeline {
     agent any
-     }
-    environment{
-      mvnHome = tool 'maven-3.6.3'
+     
+    //environment{
+     // mvnHome = tool 'maven-3.6.3'
         
-    }
+//}
     stages{
         stage('checkout'){
             steps{
