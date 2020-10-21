@@ -1,5 +1,5 @@
 pipeline {
-    agent { node {label 'node'}
+    agent any
      }
     environment{
       mvnHome = tool 'maven-3.6.3'
@@ -24,3 +24,4 @@ pipeline {
               archiveArtifacts allowEmptyArchive: true, artifacts: 'webapp/target/*.war'
             }
         }
+    }
